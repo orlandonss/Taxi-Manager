@@ -70,7 +70,7 @@ The system is designed so that no single client, vehicle, or administrative oper
 
 The following diagram illustrates the main communication paths between clients, the server, and vehicle processes.
 
-```text
+```bash
 =======================================================================
                    PROCESS COMMUNICATION PIPELINE
 =======================================================================
@@ -137,7 +137,7 @@ This thread continuously monitors the server FIFO and processes incoming `Pedido
 
 Conceptually:
 
-```text
+```bash
 CLIENT
    |
    | Pedido
@@ -167,7 +167,7 @@ fifo_cli_1003
 
 The server uses these FIFOs to send responses and asynchronous notifications to individual clients.
 
-```text
+```bash
                          +----------------+
                          |     SERVER     |
                          +----------------+
@@ -196,7 +196,7 @@ When a scheduled ride is ready to start, the server creates a new vehicle proces
 
 The process creation sequence is conceptually:
 
-```text
+```bash
 Server
   |
   +-- pipe()
@@ -243,7 +243,7 @@ The vehicle registers a signal handler that detects the cancellation request.
 
 The simplified sequence is:
 
-```text
+```bash
 SERVER
    |
    | kill(vehicle_pid, SIGUSR1)
@@ -892,7 +892,7 @@ A graceful shutdown should perform the following operations:
 
 Conceptually:
 
-```text
+```bash
                     TERMINAR
                        |
                        v
@@ -926,7 +926,7 @@ Conceptually:
 
 A typical taxi ride follows this lifecycle:
 
-```text
+```bash
                     +-----------+
                     | SCHEDULED |
                     +-----------+
@@ -1032,7 +1032,7 @@ Instead, the server creates vehicle processes when a ride needs to be executed.
 
 The process lifecycle is approximately:
 
-```text
+```bash
                   SERVER
                     |
                     | fork()
@@ -1165,7 +1165,7 @@ The server can send asynchronous notifications through the client's private FIFO
 
 For example:
 
-```text
+```bash
 SERVER
    |
    | OP_INFO
@@ -1180,7 +1180,7 @@ The client monitors its FIFO and keyboard input simultaneously using `select()`.
 
 Conceptually:
 
-```text
+```bash
                  +----------------+
                  |     CLIENT     |
                  +----------------+
@@ -1210,7 +1210,7 @@ The system combines **process-based concurrency**, **thread-based concurrency**,
 
 The main concurrency model can be summarized as:
 
-```text
+```bash
                          SERVER
                            |
           +----------------+----------------+
@@ -1298,7 +1298,7 @@ The project makes use of several POSIX mechanisms.
 
 The complete communication model can be summarized as follows:
 
-```text
+```bash
 +-------------+                    +----------------+
 |             |   Named FIFO       |                |
 |   CLIENT    | -----------------> |     SERVER     |
@@ -1451,7 +1451,7 @@ the server should cleanly shut down all system resources.
 
 The intended shutdown sequence is:
 
-```text
+```bash
                     +----------------+
                     |    terminar    |
                     +----------------+
@@ -1592,7 +1592,7 @@ Its architecture combines several operating-system concepts:
 
 The overall architecture can be summarized as:
 
-```text
+```bash
                          TAXI MANAGER
                               |
              +----------------+----------------+
