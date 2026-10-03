@@ -24,20 +24,19 @@ typedef struct {
 
 typedef struct {
     int id;
-    int estado; 
+    int estado;
     int distancia;
-     pid_t pid_cliente; 
-     char local[TAM_STR]; 
-     int hora;
+    pid_t pid_cliente;
+    char local[TAM_STR];
+    int hora;
 } ServicoInfo;
 
 
 typedef struct {
     UserInfo utilizadores[MAX_USERS];
     ServicoInfo servicos[MAX_SERVICOS];
-    VeiculoInfo frota[MAX_VEICULOS]; 
-    
-    volatile int sistema_ativo; 
+    VeiculoInfo frota[MAX_VEICULOS];
+    volatile int sistema_ativo;
     int descritor_fifo;
     int total_servicos;
     int tempo_simulado;
